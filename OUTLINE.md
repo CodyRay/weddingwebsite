@@ -16,14 +16,14 @@
 - Venue
   - Directions
   - Parking
-  - Reception will be held in the same 
+  - Reception will be held in the same
 - Story
   - How meet
   - How propose
 - Photos
   - Cite Reede
 
-Cody Ray Hoeft 
+Cody Ray Hoeft
 & John West
 
 2:00 PM | November 17, 2018
@@ -43,7 +43,7 @@ Thanks again to all of our family and friends for their love and support - we wi
 
 The wedding ceremony will start at about 2:00 PM on November 17th. After the ceremony, the reception will be held in the adjacent room. We arn't planning on holding a sitdown dinner, but there should be enough food that nobody should be hungry afterwards (don't forget to save room for cake too). Throughout the reception we plan to have some music, dancing, and socializing. We can use the venue all afternoon, but we expect things will wrap up before 6 PM at the latest.
 
-Picture of Civic Auditorium | 
+Picture of Civic Auditorium |
 
 We will be holding our wedding at The Dalles Civic Auditorium in The Dalles, Oregon. We choose to look for venues in the Columbia River Gorge because it is a convenient half-way point between Salem and Hermiston and we wanted to make sure that non of our guests would have a excessive drive to the wedding. We settled on the Civic Auditorium because it was indoors (November after all), wasn't overly large for the cozy ceremony we had in mind, and had separate but adjacent spaces for the reception and ceremony. The Civic Auditorium is near downtown The Dalles, and only has street side parking (so just be mindful that it may be a short walk from your car to the auditorium).
 
@@ -57,8 +57,8 @@ Email or Phone: required
 
 Will you be attending? required
 
-* yes - Accepts with Pleasure
-* no - Regretfully Declines
+- yes - Accepts with Pleasure
+- no - Regretfully Declines
 
 Your guests name: optional
 
@@ -98,4 +98,3 @@ John West
 (541) 250-1748
 
 [Contact Form]
-

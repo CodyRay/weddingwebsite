@@ -1,0 +1,18 @@
+@import '~sass-rem';
+
+@function em($values...) {
+  $result: ();
+  $separator: list-separator($values);
+
+  @each $value in $values {
+    @if type-of($value) == 'number' and unit($value) == 'px' {
+      $result: append($result, $value / $rem-baseline * 1em, $separator);
+    } @else if type-of($value) == 'list' {
+      $result: append($result, em($value ...), $separator);
+    } @else {
+      $result: append($result, $value, $separator);
+    }
+  }
+
+  @return if(length($result) == 1, nth($result, 1), $result);
+}

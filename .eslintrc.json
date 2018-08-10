@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/standard"
+  ],
+  "plugins": ["react", "prettier", "standard"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  }
+}

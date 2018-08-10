@@ -1,7 +1,5 @@
-import Typography from "typography"
-import theme from "typography-theme-st-annes"
-
-theme.baseFontSize = '18px';
+import Typography from 'typography'
+import theme from 'typography-theme-alton'
 
 const typography = new Typography(theme)
 

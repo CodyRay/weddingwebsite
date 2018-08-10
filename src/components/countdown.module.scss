@@ -1,0 +1,62 @@
+@import '../main';
+
+.countdown {
+  color: #f6f7f9;
+  text-align: center;
+}
+
+.countdown .dash {
+  background-color: #02224e;
+  display: inline-block;
+  padding: rem(20px 30px);
+  line-height: rem(72px);
+}
+
+.countdown .dash:first-child {
+  border-radius: rem(8px 0 0 8px);
+}
+
+.countdown .dash:last-child {
+  border-radius: rem(0 8px 8px 0);
+}
+
+@media screen and (max-width: em(720px)) {
+  .countdown .dash {
+    display: block;
+    width: rem(180px);
+    margin: 0 auto;
+  }
+
+  .countdown .dash:first-child {
+    border-radius: rem(8px 8px 0 0);
+  }
+
+  .countdown .dash:last-child {
+    border-radius: rem(0 0 8px 8px);
+  }
+}
+
+.countdown .dash .title {
+  padding-left: rem(28px);
+  padding-right: rem(28px);
+}
+
+.countdown .dash .digits {
+  font-size: rem(44px);
+  line-height: rem(44px);
+  height: rem(38px);
+}
+
+.countdown .dash .digits .top,
+.countdown .dash .digits .bottom {
+  font-weight: 300;
+}
+
+.countdown .dash span.title {
+  font-size: rem(14px);
+  line-height: rem(16px);
+  padding-top: rem(6px);
+  font-weight: 300;
+  display: block;
+  text-align: center;
+}

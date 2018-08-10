@@ -1,18 +1,31 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "weddingwebsite",
+  "private": true,
+  "description": "A wedding website based off gatsby default starter",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Cody Ray Hoeft <crhoeft@gmail.com>",
   "dependencies": {
+    "createjs": "^1.0.1",
+    "date-fns": "^1.29.0",
+    "exports-loader": "^0.7.0",
     "gatsby": "next",
+    "gatsby-plugin-react-css-modules": "^2.0.0-beta.5",
     "gatsby-plugin-react-helmet": "next",
-    "gatsby-plugin-typography": "^1.7.19",
+    "gatsby-plugin-sass": "^2.0.0-beta.10",
+    "gatsby-plugin-typography": "^2.2.0-beta.3",
+    "imports-loader": "^0.8.0",
+    "node-sass": "^4.9.2",
+    "postcss-scss": "^2.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
+    "react-measure": "^2.1.0",
     "react-typography": "^0.16.13",
+    "recompose": "^0.28.2",
+    "sass-rem": "^2.0.1",
     "typography": "^0.16.17",
-    "typography-theme-st-annes": "^0.15.10"
+    "typography-theme-alton": "^0.15.10",
+    "window-or-global": "^1.0.1"
   },
   "keywords": [
     "gatsby"
@@ -21,11 +34,35 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write 'src/**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --ignore-path .gitignore --write \"**/*.{js,jsx,json,md,yml}\"",
+    "lint": "npm run lint:es && npm run lint:style",
+    "lint:es": "eslint --ignore-path .gitignore \"**/*.{js,jsx}\"",
+    "lint:style": "stylelint \"src/**/*.{js,jsx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "pretty-quick --staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm run lint"
+    }
   },
   "devDependencies": {
-    "prettier": "^1.13.7"
+    "ajv": "^6.5.2",
+    "babel-eslint": "^8.2.6",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.13.7",
+    "pretty-quick": "^1.6.0",
+    "stylelint": "^9.4.0",
+    "stylelint-config-prettier": "^4.0.0",
+    "stylelint-config-recommended": "^2.1.0"
   },
   "repository": {
     "type": "git",

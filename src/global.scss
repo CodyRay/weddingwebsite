@@ -1,0 +1,10 @@
+@import './main';
+
+html {
+  @include rem-baseline;
+}
+
+body {
+  background-color: #abb4b9;
+  min-width: rem(320px);
+}
