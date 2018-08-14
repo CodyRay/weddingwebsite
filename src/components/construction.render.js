@@ -204,7 +204,7 @@ function Header(mode,startPosition,loop) {
 	this.shape_7.setTransform(16.1,35.9);
 
 	this.shape_8 = new createjs.Shape();
-	this.shape_8.graphics.f("#3853D8").s().p("AvHCpQgPAAgMgLQgLgLAAgQIAAkFQAAgPALgMQAMgLAPAAIePAAQAQAAALALQALAMAAAPIAAEFQAAAQgLALQgLALgQAAg");
+	this.shape_8.graphics.f("#02224E").s().p("AvHCpQgPAAgMgLQgLgLAAgQIAAkFQAAgPALgMQAMgLAPAAIePAAQAQAAALALQALAMAAAPIAAEFQAAAQgLALQgLALgQAAg");
 	this.shape_8.setTransform(100.6,37);
 
 	this.shape_9 = new createjs.Shape();

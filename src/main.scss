@@ -16,3 +16,12 @@
 
   @return if(length($result) == 1, nth($result, 1), $result);
 }
+
+$blue: #02224e;
+$silver: #abb4b9;
+$blackish: #090c08;
+$darkpurple: #474056;
+$lightpurple: #757083;
+
+$min-tablet-width: em(426px);
+$min-desktop-width: em(769px);

@@ -5,6 +5,12 @@ html {
 }
 
 body {
-  background-color: #abb4b9;
+  background-color: $silver;
   min-width: rem(320px);
+}
+
+@media screen and (min-width: $min-tablet-width) {
+  body {
+    padding: 0 10px;
+  }
 }

@@ -1,51 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import './index.module.scss'
 import { Layout } from '../components/layout'
-import { Construction } from '../components/construction'
-import { Countdown } from '../components/countdown'
-import { format } from 'date-fns'
-
-class CountdownFromNow extends React.Component {
-  state = { currentDate: new Date() }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.setState({ currentDate: new Date() }),
-      1000
-    )
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID)
-  }
-
-  render() {
-    return (
-      <Countdown fromDate={this.state.currentDate} toDate={this.props.date} />
-    )
-  }
-
-  static propTypes = {
-    date: PropTypes.instanceOf(Date),
-  }
-}
-
-const weddingDate = new Date('Sat, 17 Nov 2018 14:00:00 PST')
+import UnderConstruction from '../components/under_construction'
 
 const IndexPage = () => (
   <Layout>
-    <div styleName="construction-wrapper">
-      <Construction />
-    </div>
-    <div styleName="content-wrapper">
-      <h1>Website Under Construction!</h1>
-      <div styleName="countdown-wrapper">
-        <CountdownFromNow date={weddingDate} />
-      </div>
-      <span>{format(weddingDate, 'MMMM Do, YYYY h:mm a')}</span>
-    </div>
+    <UnderConstruction />
+    {/* <p>
+      {`We are excited to share our special day with you! We hope that this website provides you with all the important details you need to attend our wedding. Please don't hesitate to contact us if you have any remaining questions.`}
+    </p>
+
+    <p>
+      {`If you haven't already, please RSVP to let us know that you are coming. You'll also find ceremony and reception details including directions. Check back occasionally as we will be making updates throughout the fall.`}
+    </p>
+
+    <p>
+      {`In case you haven't met one of us ;), check out the story of who we are and how we met.`}
+    </p>
+
+    <p>
+      {`Thanks again to all of our family and friends for their love and support - we will see you in November!`}
+    </p> */}
   </Layout>
 )
 
