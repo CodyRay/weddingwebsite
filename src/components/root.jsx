@@ -11,18 +11,20 @@ export const Root = ({ children, data }) => (
         site {
           siteMetadata {
             title
+            description
           }
         }
       }
     `}
-    render={data => (
+    render={({
+      site: {
+        siteMetadata: { title, description },
+      },
+    }) => (
       <>
         <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
+          title={title}
+          meta={[{ name: 'description', content: description }]}
         />
         {children}
       </>
