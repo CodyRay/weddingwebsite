@@ -11,8 +11,9 @@ export const Layout = ({ children }) => (
       query {
         portrait: file(relativePath: { eq: "portrait.jpg" }) {
           childImageSharp {
-            fixed(width: 300) {
+            fixed(width: 300, quality: 95) {
               src
+              srcSet
             }
           }
         }
@@ -20,9 +21,7 @@ export const Layout = ({ children }) => (
     `}
     render={({
       portrait: {
-        childImageSharp: {
-          fixed: { src: portrait },
-        },
+        childImageSharp: { fixed: portrait },
       },
     }) => (
       <Root>
@@ -31,7 +30,11 @@ export const Layout = ({ children }) => (
             <img src={stamp} alt="Cody Ray and John, Nov 17, 2018" />
           </div>
           <div styleName="portrait">
-            <img src={portrait} alt="Cody Ray and John" />
+            <img
+              src={portrait.src}
+              srcSet={portrait.srcSet}
+              alt="Cody Ray and John"
+            />
           </div>
         </header>
         <div styleName="container">{children}</div>
