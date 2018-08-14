@@ -12,6 +12,15 @@ module.exports = {
         pathToConfigModule: `src/utils/typography.js`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `img`,
+        path: `${__dirname}/src/img/`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     'gatsby-plugin-netlify', // must be last in the array
   ],
 }
