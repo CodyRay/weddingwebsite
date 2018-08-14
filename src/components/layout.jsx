@@ -11,7 +11,7 @@ export const Layout = ({ children }) => (
       query {
         portrait: file(relativePath: { eq: "portrait.jpg" }) {
           childImageSharp {
-            fixed(width: 300, quality: 95) {
+            fixed(width: 300, quality: 85) {
               src
               srcSet
             }
