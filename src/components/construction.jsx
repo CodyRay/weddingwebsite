@@ -34,7 +34,7 @@ export class Construction extends React.Component {
   }
 
   get baseHeight() {
-    return properties.width
+    return properties.height
   }
 
   componentDidMount() {

@@ -1,7 +1,58 @@
 @import '../main';
 
+$layout-spacing: rem(20px);
+
+.header,
 .container {
   margin: 0 auto;
   max-width: rem(960px);
-  padding: 0;
+  padding: $layout-spacing;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: $blue;
+
+  img {
+    margin: 0;
+  }
+}
+
+.stamp {
+  padding-left: $layout-spacing;
+  padding-right: $layout-spacing;
+}
+
+.stamp,
+.portrait {
+  width: rem(205px);
+}
+
+.portrait {
+  margin-top: $layout-spacing;
+}
+
+.container {
+  background-color: #fff;
+}
+
+@media screen and (min-width: $min-tablet-width) {
+  .header {
+    flex-direction: row;
+  }
+
+  .stamp,
+  .portrait {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: $min-desktop-width) {
+  .stamp,
+  .portrait {
+    width: 30%;
+  }
 }
