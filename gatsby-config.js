@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: `Cody Ray and John's Wedding Website - November 17th, 2018`,
+    description: `Cody Ray Hoeft and John West will be getting married November 17th, 2018 at The Dalles Civic Auditorium in The Dalles, Oregen`,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -11,5 +12,6 @@ module.exports = {
         pathToConfigModule: `src/utils/typography.js`,
       },
     },
+    'gatsby-plugin-netlify', // must be last in the array
   ],
 }
