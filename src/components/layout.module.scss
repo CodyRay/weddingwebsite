@@ -3,7 +3,8 @@
 $layout-spacing: rem(20px);
 
 .header,
-.container {
+.container,
+.navigation {
   margin: 0 auto;
   max-width: rem(960px);
   padding: $layout-spacing;
@@ -35,6 +36,55 @@ $layout-spacing: rem(20px);
   margin-top: $layout-spacing;
 }
 
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: 0;
+  background-color: $lightpurple;
+  padding: 0 $layout-spacing;
+
+  .text {
+    display: none;
+  }
+
+  a {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    margin: 0 $layout-spacing/6;
+    padding: $layout-spacing $layout-spacing/6;
+    color: white;
+    position: relative;
+    opacity: 0.8;
+    font-weight: 500;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &[aria-current] {
+      background-color: $darkpurple;
+      opacity: 1;
+    }
+
+    &[aria-current]:after {
+      $triangle-size: rem(10px);
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin: -$triangle-size;
+      width: 0;
+      height: 0;
+      border-bottom: solid $triangle-size white;
+      border-left: solid $triangle-size transparent;
+      border-right: solid $triangle-size transparent;
+    }
+  }
+}
+
 .container {
   background-color: #fff;
 }
@@ -47,6 +97,15 @@ $layout-spacing: rem(20px);
   .stamp,
   .portrait {
     width: 40%;
+  }
+
+  .navigation {
+    .text {
+      display: initial;
+    }
+    .icon {
+      display: none;
+    }
   }
 }
 

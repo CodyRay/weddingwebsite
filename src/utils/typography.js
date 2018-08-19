@@ -1,6 +1,11 @@
 import Typography from 'typography'
-import theme from 'typography-theme-alton'
 
-const typography = new Typography(theme)
+const typography = new Typography({
+  overrideStyles: (actions, options, styles) => ({
+    '.header-font': {
+      fontFamily: options.headerFontFamily.join(','),
+    },
+  }),
+})
 
 export default typography

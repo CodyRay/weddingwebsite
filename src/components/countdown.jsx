@@ -34,7 +34,7 @@ const enhance = compose(
 
 export const Countdown = enhance(({ days, hours, minutes, seconds }) => (
   <>
-    <div styleName="countdown">
+    <div styleName="countdown" className="header-font">
       {/* Days */}
       <div styleName="dash">
         <div styleName="digits">{days}</div>
