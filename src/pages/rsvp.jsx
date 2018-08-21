@@ -1,12 +1,217 @@
 import React from 'react'
 
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  withStyles,
+} from '@material-ui/core/styles'
+import {
+  TextField,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
+  Button,
+} from '@material-ui/core'
+import { navigate } from 'gatsby'
 import { Layout } from '../components/layout'
-import UnderConstruction from '../components/under_construction'
+import { compose, withState } from 'recompose'
+import { blue, darkpurple, lightpurple } from '../main_colors'
+import './rsvp.module.scss'
+import Recaptcha from 'react-google-recaptcha'
+import fetch from 'unfetch'
 
-const Rsvp = () => (
-  <Layout>
-    <UnderConstruction />
-  </Layout>
+const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
+
+console.log(RECAPTCHA_KEY)
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: blue,
+    },
+    secondary: {
+      light: lightpurple,
+      main: darkpurple,
+    },
+  },
+})
+
+const styles = theme => ({
+  formControl: {
+    marginTop: `${theme.spacing.unit * 3}px`,
+  },
+  group: {
+    marginLeft: `${theme.spacing.unit}px`,
+    marginTop: `${theme.spacing.unit}px`,
+  },
+  button: {
+    marginTop: `${theme.spacing.unit * 3}px`,
+  },
+})
+
+const enhance = compose(
+  withState('name', 'setName', ''),
+  withState('contact', 'setContact', ''),
+  withState('attend', 'setAttend', ''),
+  withState('guest', 'setGuest', ''),
+  withState('notes', 'setNotes', ''),
+  withState('recaptcha', 'setRecaptcha', ''),
+  withStyles(styles)
+)
+
+const Rsvp = enhance(
+  ({
+    classes,
+    name,
+    contact,
+    attend,
+    guest,
+    notes,
+    recaptcha,
+    setName,
+    setContact,
+    setAttend,
+    setGuest,
+    setNotes,
+    setRecaptcha,
+  }) => (
+    <Layout>
+      <MuiThemeProvider theme={theme}>
+        <form
+          name="rsvp"
+          method="POST"
+          action="/thanks"
+          netlify="true"
+          netlify-recaptcha="true"
+          styleName="form"
+          onSubmit={event => {
+            console.log({ name, contact, guest, notes })
+            event.preventDefault()
+            const form = event.target
+            fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: encode({
+                'form-name': form.getAttribute('name'),
+                name,
+                contact,
+                guest,
+                notes,
+                'g-recaptcha-response': recaptcha,
+              }),
+            })
+              .then(() => navigate(form.getAttribute('action')))
+              .catch(error => alert(`Something went wrong: ${error}`))
+          }}
+        >
+          <TextField
+            name="name"
+            type="text"
+            id="name"
+            label="Your Name"
+            margin="dense"
+            fullWidth
+            value={name}
+            onChange={({ target: { value } }) => setName(value)}
+            required
+          />
+          <FormControl
+            component="fieldset"
+            className={classes.formControl}
+            margin="dense"
+            fullWidth
+          >
+            <FormLabel component="legend" required>
+              Will you attend?
+            </FormLabel>
+            <RadioGroup
+              aria-label="Will you attend?"
+              name="attend"
+              className={classes.group}
+              value={attend}
+              onChange={({ target: { value } }) => setAttend(value)}
+            >
+              <FormControlLabel
+                value="yes"
+                control={<Radio required />}
+                label="Yes, accept with pleasure"
+              />
+              <FormControlLabel
+                value="no"
+                control={<Radio required />}
+                label="No, regretfully decline"
+              />
+            </RadioGroup>
+          </FormControl>
+
+          {attend !== 'no' && (
+            <>
+              <TextField
+                name="guest"
+                type="text"
+                id="guest"
+                label="Guest Name(s)"
+                helperText="If bringing a guest"
+                margin="dense"
+                fullWidth
+                value={guest}
+                onChange={({ target: { value } }) => setGuest(value)}
+              />
+              <TextField
+                name="contact"
+                type={/^[-+0-9 ()]+$/.test(contact) ? 'tel' : 'email'}
+                id="contact"
+                label="Your Email or Phone"
+                helperText="In case we need to contact you"
+                margin="dense"
+                fullWidth
+                value={contact}
+                onChange={({ target: { value } }) => setContact(value)}
+                required
+              />
+            </>
+          )}
+          <TextField
+            name="notes"
+            type="text"
+            id="notes"
+            label="Other Notes"
+            helperText="Dietary restrictions, comments, questions"
+            multiline
+            rowsMax="4"
+            margin="dense"
+            fullWidth
+            value={notes}
+            onChange={({ target: { value } }) => setNotes(value)}
+          />
+
+          <Recaptcha
+            size="compact"
+            className={classes.button}
+            sitekey={RECAPTCHA_KEY}
+            onChange={setRecaptcha}
+          />
+
+          <Button
+            className={classes.button}
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={!recaptcha}
+          >
+            Submit
+          </Button>
+        </form>
+      </MuiThemeProvider>
+    </Layout>
+  )
 )
 
 export default Rsvp

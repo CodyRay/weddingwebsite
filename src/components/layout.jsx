@@ -3,11 +3,8 @@ import PropTypes from 'prop-types'
 import './layout.module.scss'
 import { Root } from './root'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faHome,
-  faInfo,
-  faAddressBook,
-} from '@fortawesome/free-solid-svg-icons'
+import { faHome, faInfo, faBookOpen } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import stamp from '../img/stamp_optimized.svg'
 
@@ -54,12 +51,42 @@ export const Layout = ({ children }) => (
           </Link>
           <Link to="/rsvp">RSVP</Link>
           <Link to="/faq">FAQ</Link>
-          <Link to="/contact">
-            <FontAwesomeIcon styleName="icon" icon={faAddressBook} />
-            <span styleName="text">Contact</span>
+          <Link to="/story">
+            <FontAwesomeIcon styleName="icon" icon={faBookOpen} />
+            <span styleName="text">Story</span>
           </Link>
         </nav>
         <div styleName="container">{children}</div>
+        <div styleName="container">
+          <hr />
+        </div>
+        <div styleName="container">
+          <div styleName="contact">
+            <p>
+              Cody Ray Hoeft
+              <br />
+              <a href="tel:1-541-720-4317">(541) 720-4317</a> or{' '}
+              <a
+                no-style="true"
+                href="https://m.me/codyray.hoeft"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon
+                  style={{ color: '#0084ff' }}
+                  size="lg"
+                  icon={faFacebookMessenger}
+                />
+              </a>
+            </p>
+
+            <p>
+              John West
+              <br />
+              <a href="tel:1-541-250-1748">(541) 250-1748</a>
+            </p>
+          </div>
+        </div>
       </Root>
     )}
   />
