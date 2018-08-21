@@ -24,6 +24,10 @@ import fetch from 'unfetch'
 
 const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
 
+if (!RECAPTCHA_KEY) {
+  throw new Error('Looks like the recaptcha key is missing')
+}
+
 console.log(RECAPTCHA_KEY)
 function encode(data) {
   return Object.keys(data)
