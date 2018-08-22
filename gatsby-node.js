@@ -23,6 +23,14 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       ],
     },
   })
+
+  // actions.setWebpackConfig({
+  //   plugins: [
+  //     new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin({
+  //       analyzerPort: 0,
+  //     }),
+  //   ],
+  // })
 }
 
 // Like gatsby-plugin-react-css-modules but not broken

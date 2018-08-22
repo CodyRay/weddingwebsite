@@ -1,5 +1,0 @@
-export const blue = '#02224e'
-export const silver = '#abb4b9'
-export const blackish = '#090c08'
-export const darkpurple = '#474056'
-export const lightpurple = '#757083'

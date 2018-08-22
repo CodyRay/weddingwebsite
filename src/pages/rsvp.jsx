@@ -1,23 +1,16 @@
 import React from 'react'
 
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  withStyles,
-} from '@material-ui/core/styles'
-import {
-  TextField,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  Button,
-} from '@material-ui/core'
+import { withStyles } from '@material-ui/core/es/styles'
+import TextField from '@material-ui/core/es/TextField'
+import FormControl from '@material-ui/core/es/FormControl'
+import FormLabel from '@material-ui/core/es/FormLabel'
+import RadioGroup from '@material-ui/core/es/RadioGroup'
+import Radio from '@material-ui/core/es/Radio'
+import FormControlLabel from '@material-ui/core/es/FormControlLabel'
+import Button from '@material-ui/core/es/Button'
 import { navigate } from 'gatsby'
 import { Layout } from '../components/layout'
 import { compose, withState } from 'recompose'
-import { blue, darkpurple, lightpurple } from '../main_colors'
 import './rsvp.module.scss'
 import Recaptcha from 'react-google-recaptcha'
 import fetch from 'unfetch'
@@ -28,24 +21,11 @@ if (!RECAPTCHA_KEY) {
   throw new Error('Looks like the recaptcha key is missing')
 }
 
-console.log(RECAPTCHA_KEY)
 function encode(data) {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&')
 }
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: blue,
-    },
-    secondary: {
-      light: lightpurple,
-      main: darkpurple,
-    },
-  },
-})
 
 const styles = theme => ({
   formControl: {
@@ -87,133 +67,139 @@ const Rsvp = enhance(
     setRecaptcha,
   }) => (
     <Layout>
-      <MuiThemeProvider theme={theme}>
-        <form
-          name="rsvp"
-          method="POST"
-          action="/thanks"
-          netlify="true"
-          netlify-recaptcha="true"
-          styleName="form"
-          onSubmit={event => {
-            console.log({ name, contact, guest, notes })
-            event.preventDefault()
-            const form = event.target
-            fetch('/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: encode({
-                'form-name': form.getAttribute('name'),
-                name,
-                contact,
-                guest,
-                notes,
-                'g-recaptcha-response': recaptcha,
-              }),
-            })
-              .then(() => navigate(form.getAttribute('action')))
-              .catch(error => alert(`Something went wrong: ${error}`))
-          }}
+      <form
+        name="rsvp"
+        method="POST"
+        action="/thanks"
+        netlify="true"
+        netlify-recaptcha="true"
+        styleName="form"
+        onSubmit={event => {
+          console.log({
+            name,
+            contact,
+            attend,
+            guest,
+            notes,
+            recaptcha,
+          })
+          event.preventDefault()
+          const form = event.target
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: encode({
+              'form-name': form.getAttribute('name'),
+              name,
+              contact,
+              attend,
+              guest,
+              notes,
+              'g-recaptcha-response': recaptcha,
+            }),
+          })
+            .then(() => navigate(form.getAttribute('action')))
+            .catch(error => alert(`Something went wrong: ${error}`))
+        }}
+      >
+        <TextField
+          name="name"
+          type="text"
+          id="name"
+          label="Your Name"
+          margin="dense"
+          fullWidth
+          value={name}
+          onChange={({ target: { value } }) => setName(value)}
+          required
+        />
+        <FormControl
+          component="fieldset"
+          className={classes.formControl}
+          margin="dense"
+          fullWidth
         >
-          <TextField
-            name="name"
-            type="text"
-            id="name"
-            label="Your Name"
-            margin="dense"
-            fullWidth
-            value={name}
-            onChange={({ target: { value } }) => setName(value)}
-            required
-          />
-          <FormControl
-            component="fieldset"
-            className={classes.formControl}
-            margin="dense"
-            fullWidth
+          <FormLabel component="legend" required>
+            Will you attend?
+          </FormLabel>
+          <RadioGroup
+            aria-label="Will you attend?"
+            name="attend"
+            className={classes.group}
+            value={attend}
+            onChange={({ target: { value } }) => setAttend(value)}
           >
-            <FormLabel component="legend" required>
-              Will you attend?
-            </FormLabel>
-            <RadioGroup
-              aria-label="Will you attend?"
-              name="attend"
-              className={classes.group}
-              value={attend}
-              onChange={({ target: { value } }) => setAttend(value)}
-            >
-              <FormControlLabel
-                value="yes"
-                control={<Radio required />}
-                label="Yes, accept with pleasure"
-              />
-              <FormControlLabel
-                value="no"
-                control={<Radio required />}
-                label="No, regretfully decline"
-              />
-            </RadioGroup>
-          </FormControl>
+            <FormControlLabel
+              value="yes"
+              control={<Radio required />}
+              label="Yes, accept with pleasure"
+            />
+            <FormControlLabel
+              value="no"
+              control={<Radio required />}
+              label="No, regretfully decline"
+            />
+          </RadioGroup>
+        </FormControl>
 
-          {attend !== 'no' && (
-            <>
-              <TextField
-                name="guest"
-                type="text"
-                id="guest"
-                label="Guest Name(s)"
-                helperText="If bringing a guest"
-                margin="dense"
-                fullWidth
-                value={guest}
-                onChange={({ target: { value } }) => setGuest(value)}
-              />
-              <TextField
-                name="contact"
-                type={/^[-+0-9 ()]+$/.test(contact) ? 'tel' : 'email'}
-                id="contact"
-                label="Your Email or Phone"
-                helperText="In case we need to contact you"
-                margin="dense"
-                fullWidth
-                value={contact}
-                onChange={({ target: { value } }) => setContact(value)}
-                required
-              />
-            </>
-          )}
-          <TextField
-            name="notes"
-            type="text"
-            id="notes"
-            label="Other Notes"
-            helperText="Dietary restrictions, comments, questions"
-            multiline
-            rowsMax="4"
-            margin="dense"
-            fullWidth
-            value={notes}
-            onChange={({ target: { value } }) => setNotes(value)}
-          />
+        {attend !== 'no' && (
+          <>
+            <TextField
+              name="guest"
+              type="text"
+              id="guest"
+              label="Guest Name(s)"
+              helperText="If bringing a guest"
+              margin="dense"
+              fullWidth
+              value={guest}
+              onChange={({ target: { value } }) => setGuest(value)}
+            />
+            <TextField
+              name="contact"
+              type={/^[-+0-9 ()]+$/.test(contact) ? 'tel' : 'email'}
+              id="contact"
+              label="Your Email or Phone"
+              helperText="In case we need to contact you"
+              margin="dense"
+              fullWidth
+              value={contact}
+              onChange={({ target: { value } }) => setContact(value)}
+              required
+            />
+          </>
+        )}
+        <TextField
+          name="notes"
+          type="text"
+          id="notes"
+          label="Other Notes"
+          helperText="Dietary restrictions, comments, questions"
+          multiline
+          rowsMax="4"
+          margin="dense"
+          fullWidth
+          value={notes}
+          onChange={({ target: { value } }) => setNotes(value)}
+        />
 
-          <Recaptcha
-            size="compact"
-            className={classes.button}
-            sitekey={RECAPTCHA_KEY}
-            onChange={setRecaptcha}
-          />
+        <Recaptcha
+          size="compact"
+          className={classes.button}
+          sitekey={RECAPTCHA_KEY}
+          onChange={setRecaptcha}
+        />
 
-          <Button
-            className={classes.button}
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={!recaptcha}
-          >
-            Submit
-          </Button>
-        </form>
-      </MuiThemeProvider>
+        <Button
+          className={classes.button}
+          type="submit"
+          variant="contained"
+          color="primary"
+          disabled={!recaptcha}
+        >
+          Submit
+        </Button>
+      </form>
     </Layout>
   )
 )
