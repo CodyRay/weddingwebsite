@@ -1,7 +1,5 @@
 @import '../main';
 
-$layout-spacing: rem(20px);
-
 .header,
 .container,
 .navigation {
@@ -12,7 +10,7 @@ $layout-spacing: rem(20px);
 
 .header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   background-color: $blue;
@@ -29,7 +27,7 @@ $layout-spacing: rem(20px);
 
 .stamp,
 .portrait {
-  width: rem(205px);
+  width: 40%;
 }
 
 .portrait {
@@ -87,16 +85,38 @@ $layout-spacing: rem(20px);
 
 .container {
   background-color: #fff;
+
+  a:not([no-style]) {
+    text-decoration: none;
+    background-color: transparentize($darkpurple, 0.9);
+    border-radius: rem(2px);
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
+      background-color: transparentize($darkpurple, 0.7);
+    }
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+  p {
+    width: 200px;
+  }
 }
 
 @media screen and (min-width: $min-tablet-width) {
-  .header {
-    flex-direction: row;
-  }
-
   .stamp,
   .portrait {
-    width: 40%;
+    width: 30%;
   }
 
   .navigation {
@@ -112,6 +132,6 @@ $layout-spacing: rem(20px);
 @media screen and (min-width: $min-desktop-width) {
   .stamp,
   .portrait {
-    width: 30%;
+    width: 25%;
   }
 }

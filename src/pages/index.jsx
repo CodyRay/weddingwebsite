@@ -1,27 +1,33 @@
 import React from 'react'
+import { Link } from 'gatsby'
 
 import './index.module.scss'
 import { Layout } from '../components/layout'
-import UnderConstruction from '../components/under_construction'
 
 const IndexPage = () => (
   <Layout>
-    <UnderConstruction />
-    {/* <p>
-      {`We are excited to share our special day with you! We hope that this website provides you with all the important details you need to attend our wedding. Please don't hesitate to contact us if you have any remaining questions.`}
-    </p>
+    <div>
+      <p>
+        We are excited to share our special day with you! We hope that this
+        website provides you with all the{' '}
+        <Link to="/info">important details</Link> you need to attend our
+        wedding. Please don‘t hesitate to contact us if you have any remaining
+        questions.
+      </p>
 
-    <p>
-      {`If you haven't already, please RSVP to let us know that you are coming. You'll also find ceremony and reception details including directions. Check back occasionally as we will be making updates throughout the fall.`}
-    </p>
+      <p>
+        If you haven‘t already, please <Link to="/rsvp">RSVP</Link> to let us
+        know that you are coming and checkout the{' '}
+        <Link to="/info">ceremony and reception details</Link>. Check back
+        occasionally for updates throughout the fall. If you are curious about
+        how we met checkout our story.
+      </p>
 
-    <p>
-      {`In case you haven't met one of us ;), check out the story of who we are and how we met.`}
-    </p>
-
-    <p>
-      {`Thanks again to all of our family and friends for their love and support - we will see you in November!`}
-    </p> */}
+      <p>
+        Thanks again to all of our family and friends for their love and support
+        - we will see you in November!
+      </p>
+    </div>
   </Layout>
 )
 
