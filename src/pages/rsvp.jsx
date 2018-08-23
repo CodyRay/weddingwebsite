@@ -68,7 +68,7 @@ const Rsvp = enhance(
   }) => (
     <Layout>
       <form
-        name="rsvp"
+        name="wedding-rsvp"
         method="POST"
         action="/thanks"
         data-netlify="true"
