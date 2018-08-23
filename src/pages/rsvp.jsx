@@ -85,7 +85,7 @@ const Rsvp = enhance(
           })
           event.preventDefault()
           const form = event.target
-          fetch('/', {
+          fetch(form.getAttribute('action'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: encode({
