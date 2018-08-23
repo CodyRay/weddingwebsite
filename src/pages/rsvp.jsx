@@ -12,14 +12,14 @@ import { navigate } from 'gatsby'
 import { Layout } from '../components/layout'
 import { compose, withState } from 'recompose'
 import './rsvp.module.scss'
-import Recaptcha from 'react-google-recaptcha'
+// import Recaptcha from 'react-google-recaptcha'
 import fetch from 'unfetch'
 
-const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
+// const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
 
-if (!RECAPTCHA_KEY) {
-  throw new Error('Looks like the recaptcha key is missing')
-}
+// if (!RECAPTCHA_KEY) {
+//   throw new Error('Looks like the recaptcha key is missing')
+// }
 
 function encode(data) {
   return Object.keys(data)
@@ -46,7 +46,7 @@ const enhance = compose(
   withState('attend', 'setAttend', ''),
   withState('guest', 'setGuest', ''),
   withState('notes', 'setNotes', ''),
-  withState('recaptcha', 'setRecaptcha', ''),
+  // withState('recaptcha', 'setRecaptcha', ''),
   withStyles(styles)
 )
 
@@ -58,13 +58,13 @@ const Rsvp = enhance(
     attend,
     guest,
     notes,
-    recaptcha,
+    // recaptcha,
     setName,
     setContact,
     setAttend,
     setGuest,
     setNotes,
-    setRecaptcha,
+    // setRecaptcha,
   }) => (
     <Layout>
       <form
@@ -72,7 +72,7 @@ const Rsvp = enhance(
         method="POST"
         action="/thanks"
         data-netlify="true"
-        data-netlify-recaptcha="true"
+        // data-netlify-recaptcha="true"
         styleName="form"
         onSubmit={event => {
           console.log({
@@ -81,7 +81,7 @@ const Rsvp = enhance(
             attend,
             guest,
             notes,
-            recaptcha,
+            // recaptcha,
           })
           event.preventDefault()
           const form = event.target
@@ -95,7 +95,7 @@ const Rsvp = enhance(
               attend,
               guest,
               notes,
-              'g-recaptcha-response': recaptcha,
+              // 'g-recaptcha-response': recaptcha,
             }),
           })
             .then(() => navigate(form.getAttribute('action')))
@@ -183,19 +183,19 @@ const Rsvp = enhance(
           onChange={({ target: { value } }) => setNotes(value)}
         />
 
-        <Recaptcha
+        {/* <Recaptcha
           size="compact"
           className={classes.button}
           sitekey={RECAPTCHA_KEY}
           onChange={setRecaptcha}
-        />
+        /> */}
 
         <Button
           className={classes.button}
           type="submit"
           variant="contained"
           color="primary"
-          disabled={!recaptcha}
+          // disabled={!recaptcha}
         >
           Submit
         </Button>
