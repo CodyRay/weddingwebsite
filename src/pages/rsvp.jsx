@@ -71,8 +71,8 @@ const Rsvp = enhance(
         name="rsvp"
         method="POST"
         action="/thanks"
-        data-netlify="true"
-        data-netlify-recaptcha="true"
+        netlify="true"
+        netlify-recaptcha="true"
         styleName="form"
         onSubmit={event => {
           console.log({
