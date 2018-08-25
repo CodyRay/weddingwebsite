@@ -26,7 +26,7 @@ const styles = theme => ({
 })
 
 const enhance = compose(
-  defaultProps({ formName: 'wedding-rsvp' }),
+  defaultProps({ formName: 'rsvp' }),
   withState('name', 'setName', ''),
   withState('contact', 'setContact', ''),
   withState('attend', 'setAttend', ''),
