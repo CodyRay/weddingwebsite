@@ -8,24 +8,9 @@ import RadioGroup from '@material-ui/core/es/RadioGroup'
 import Radio from '@material-ui/core/es/Radio'
 import FormControlLabel from '@material-ui/core/es/FormControlLabel'
 import Button from '@material-ui/core/es/Button'
-import { navigate } from 'gatsby'
 import { Layout } from '../components/layout'
 import { compose, withState } from 'recompose'
 import './rsvp.module.scss'
-// import Recaptcha from 'react-google-recaptcha'
-import fetch from 'unfetch'
-
-// const RECAPTCHA_KEY = process.env.GATSBY_SITE_RECAPTCHA_KEY
-
-// if (!RECAPTCHA_KEY) {
-//   throw new Error('Looks like the recaptcha key is missing')
-// }
-
-function encode(data) {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
-}
 
 const styles = theme => ({
   formControl: {
@@ -46,7 +31,6 @@ const enhance = compose(
   withState('attend', 'setAttend', ''),
   withState('guest', 'setGuest', ''),
   withState('notes', 'setNotes', ''),
-  // withState('recaptcha', 'setRecaptcha', ''),
   withStyles(styles)
 )
 
@@ -58,13 +42,11 @@ const Rsvp = enhance(
     attend,
     guest,
     notes,
-    // recaptcha,
     setName,
     setContact,
     setAttend,
     setGuest,
     setNotes,
-    // setRecaptcha,
   }) => (
     <Layout>
       <form
@@ -72,7 +54,6 @@ const Rsvp = enhance(
         method="POST"
         action="/thanks"
         data-netlify="true"
-        // data-netlify-recaptcha="true"
         styleName="form"
         onSubmit={event => {
           console.log({
@@ -81,25 +62,7 @@ const Rsvp = enhance(
             attend,
             guest,
             notes,
-            // recaptcha,
           })
-          event.preventDefault()
-          const form = event.target
-          fetch(form.getAttribute('action'), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: encode({
-              'form-name': form.getAttribute('name'),
-              name,
-              contact,
-              attend,
-              guest,
-              notes,
-              // 'g-recaptcha-response': recaptcha,
-            }),
-          })
-            .then(() => navigate(form.getAttribute('action')))
-            .catch(error => alert(`Something went wrong: ${error}`))
         }}
       >
         <TextField
@@ -183,19 +146,11 @@ const Rsvp = enhance(
           onChange={({ target: { value } }) => setNotes(value)}
         />
 
-        {/* <Recaptcha
-          size="compact"
-          className={classes.button}
-          sitekey={RECAPTCHA_KEY}
-          onChange={setRecaptcha}
-        /> */}
-
         <Button
           className={classes.button}
           type="submit"
           variant="contained"
           color="primary"
-          // disabled={!recaptcha}
         >
           Submit
         </Button>

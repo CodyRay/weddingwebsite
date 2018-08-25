@@ -30,14 +30,12 @@
     "postcss-scss": "^2.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-google-recaptcha": "^1.0.0",
     "react-helmet": "^5.2.0",
     "react-measure": "^2.1.0",
     "react-typography": "^0.16.13",
     "recompose": "^0.27.1",
     "sass-rem": "^2.0.1",
     "typography": "^0.16.17",
-    "unfetch": "^3.1.1",
     "window-or-global": "^1.0.1"
   },
   "keywords": [
