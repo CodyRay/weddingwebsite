@@ -9,7 +9,7 @@ import Radio from '@material-ui/core/es/Radio'
 import FormControlLabel from '@material-ui/core/es/FormControlLabel'
 import Button from '@material-ui/core/es/Button'
 import { Layout } from '../components/layout'
-import { compose, withState } from 'recompose'
+import { compose, withState, defaultProps } from 'recompose'
 import './rsvp.module.scss'
 
 const styles = theme => ({
@@ -26,6 +26,7 @@ const styles = theme => ({
 })
 
 const enhance = compose(
+  defaultProps({ formName: 'wedding-rsvp' }),
   withState('name', 'setName', ''),
   withState('contact', 'setContact', ''),
   withState('attend', 'setAttend', ''),
@@ -36,6 +37,7 @@ const enhance = compose(
 
 const Rsvp = enhance(
   ({
+    formName,
     classes,
     name,
     contact,
@@ -50,12 +52,13 @@ const Rsvp = enhance(
   }) => (
     <Layout>
       <form
-        name="wedding-rsvp"
+        name={formName}
         method="POST"
         action="/thanks"
         data-netlify="true"
+        data-netlify-honeypot="bot-field"
         styleName="form"
-        onSubmit={event => {
+        onSubmit={() => {
           console.log({
             name,
             contact,
@@ -65,6 +68,12 @@ const Rsvp = enhance(
           })
         }}
       >
+        <input type="hidden" name="form-name" value={formName} />
+        <p hidden>
+          <label>
+            Please fill this out if you are a bot: <input name="bot-field" />
+          </label>
+        </p>
         <TextField
           name="name"
           type="text"
