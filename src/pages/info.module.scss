@@ -1,0 +1,27 @@
+@import '../main';
+
+.location {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.address {
+  padding: $layout-spacing / 2;
+  margin: $layout-spacing / 2;
+  border-radius: $layout-spacing / 4;
+  background-color: $lightsilver;
+}
+
+.map {
+  flex-grow: 1;
+  max-width: rem(450px);
+  flex-basis: rem(300px);
+  border-radius: $layout-spacing / 2;
+  overflow: hidden;
+}
+
+.map .responsive {
+  @include responsive-sizing(4, 3);
+}

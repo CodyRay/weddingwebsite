@@ -1,4 +1,5 @@
 import React from 'react'
+import './info.module.scss'
 
 import { Layout } from '../components/layout'
 
@@ -25,12 +26,23 @@ const Info = () => (
         Auditorium is near downtown and only has street side parking, so be
         mindful that it may be a short walk from your car to the auditorium.
       </p>
-      <p>
-        The Dalles Civic Auditorium <br />
-        323 E 4th St <br />
-        The Dalles, OR 97058
-      </p>
-      {/* TODO: ADD MAP */}
+      <div styleName="location">
+        <p styleName="address" className="header-font">
+          Civic Auditorium <br />
+          323 E 4th St <br />
+          The Dalles, OR 97058
+        </p>
+        <div styleName="map">
+          <div styleName="responsive">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2791.544752133604!2d-121.18440104893926!3d45.59969573231066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54961e743d774bf7%3A0x5f7dacab56e29581!2sCivic+Auditorium!5e0!3m2!1sen!2sus!4v1535236555815"
+              frameBorder="0"
+              style={{ border: 0 }}
+              allowFullscreen
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </Layout>
 )
