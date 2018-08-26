@@ -1,6 +1,7 @@
 @import '../main';
 
 .construction-wrapper {
+  @include responsive-sizing(460, 380);
   max-width: rem(500px);
   margin: 0 auto;
 }

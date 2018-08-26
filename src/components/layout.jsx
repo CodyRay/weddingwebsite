@@ -14,6 +14,7 @@ export const Layout = ({ children }) => (
       query {
         portrait: file(relativePath: { eq: "portrait.jpg" }) {
           childImageSharp {
+            # Note: there are css components based on the width as well
             fixed(width: 300, quality: 85) {
               src
               srcSet
@@ -28,19 +29,23 @@ export const Layout = ({ children }) => (
       },
     }) => (
       <Root>
-        <header styleName="header">
+        <header styleName="container header padded">
           <div styleName="stamp">
-            <img src={stamp} alt="Cody Ray and John, Nov 17, 2018" />
+            <div styleName="responsive">
+              <img src={stamp} alt="Cody Ray and John, Nov 17, 2018" />
+            </div>
           </div>
           <div styleName="portrait">
-            <img
-              src={portrait.src}
-              srcSet={portrait.srcSet}
-              alt="Cody Ray and John"
-            />
+            <div styleName="responsive">
+              <img
+                src={portrait.src}
+                srcSet={portrait.srcSet}
+                alt="Cody Ray and John"
+              />
+            </div>
           </div>
         </header>
-        <nav styleName="navigation" className="header-font">
+        <nav styleName="container navigation padded" className="header-font">
           <Link to="/">
             <FontAwesomeIcon styleName="icon" icon={faHome} />
             <span styleName="text">Welcome</span>
@@ -56,12 +61,12 @@ export const Layout = ({ children }) => (
             <span styleName="text">Story</span>
           </Link>
         </nav>
-        <div styleName="container">{children}</div>
-        <div styleName="container">
-          <hr />
-        </div>
-        <div styleName="container">
-          <div styleName="contact">
+        <div styleName="container content padded">{children}</div>
+        <div styleName="container contact padded">
+          <p styleName="contact-header" className="header-font">
+            Contact Us
+          </p>
+          <div styleName="info">
             <p>
               Cody Ray Hoeft
               <br />

@@ -19,6 +19,7 @@
 
 $blue: #02224e;
 $silver: #abb4b9;
+$lightsilver: lighten($silver, 25%);
 $blackish: #090c08;
 $darkpurple: #474056;
 $lightpurple: #757083;
@@ -27,3 +28,23 @@ $min-tablet-width: em(426px);
 $min-desktop-width: em(769px);
 
 $layout-spacing: rem(20px);
+
+@mixin responsive-sizing($width, $height) {
+  // https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/
+  position: relative;
+  overflow: hidden;
+  &:before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

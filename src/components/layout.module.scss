@@ -1,10 +1,11 @@
 @import '../main';
 
-.header,
-.container,
-.navigation {
+.container {
   margin: 0 auto;
   max-width: rem(960px);
+}
+
+.padded {
   padding: $layout-spacing;
 }
 
@@ -27,11 +28,17 @@
 
 .stamp,
 .portrait {
+  border-radius: $layout-spacing / 2;
+  overflow: hidden;
   width: 40%;
 }
 
-.portrait {
-  margin-top: $layout-spacing;
+.stamp .responsive {
+  @include responsive-sizing(1096, 1123);
+}
+
+.portrait .responsive {
+  @include responsive-sizing(300, 198);
 }
 
 .navigation {
@@ -83,7 +90,7 @@
   }
 }
 
-.container {
+.content {
   background-color: #fff;
 
   a:not([no-style]) {
@@ -101,16 +108,29 @@
 }
 
 .contact {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
+  background-color: $lightsilver;
 
-  p {
-    width: 200px;
+  .contact-header {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: $layout-spacing * 3 / 4;
   }
+
+  .info {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+    p {
+      width: rem(200px);
+      margin-bottom: $layout-spacing / 2;
+    }
+  }
+
+  padding-bottom: $layout-spacing / 2;
 }
 
 @media screen and (min-width: $min-tablet-width) {
