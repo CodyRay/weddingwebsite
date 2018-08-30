@@ -19,8 +19,7 @@ const IndexPage = () => (
         If you haven‘t already, please <Link to="/rsvp">RSVP</Link> to let us
         know that you are coming and checkout the{' '}
         <Link to="/info">ceremony and reception details</Link>. Check back
-        occasionally for updates throughout the fall. If you are curious about
-        how we met checkout our story.
+        occasionally for updates throughout the fall.
       </p>
 
       <p>
