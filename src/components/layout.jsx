@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './layout.module.scss'
 import { Root } from './root'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faInfo, faBookOpen } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faInfo } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import stamp from '../img/stamp_optimized.svg'
@@ -56,10 +56,10 @@ export const Layout = ({ children }) => (
           </Link>
           <Link to="/rsvp">RSVP</Link>
           <Link to="/faq">FAQ</Link>
-          <Link to="/story">
+          {/* <Link to="/story">
             <FontAwesomeIcon styleName="icon" icon={faBookOpen} />
             <span styleName="text">Story</span>
-          </Link>
+          </Link> */}
         </nav>
         <div styleName="container content padded">{children}</div>
         <div styleName="container contact padded">
