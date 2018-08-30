@@ -1,0 +1,9 @@
+@import '../main';
+
+.question {
+  padding-left: 10px;
+  border-style: solid;
+  border-width: 0 0 0 6px;
+  border-color: $blue;
+  font-weight: 500;
+}

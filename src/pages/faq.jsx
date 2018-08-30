@@ -1,24 +1,31 @@
 import React from 'react'
 
+import './faq.module.scss'
 import { Layout } from '../components/layout'
 
 const Faq = () => (
   <Layout>
-    <p>What style of wedding is this?</p>
+    <p styleName="question" className="header-font">
+      What style of wedding is this?
+    </p>
 
     <p>
       The casual and relaxed kind! We have a small guest list so it should be an
       intimate event.
     </p>
 
-    <p>Will there be adult beverages?</p>
+    <p styleName="question" className="header-font">
+      Will there be adult beverages?
+    </p>
 
     <p>
       We opting to not provide alcohol, since our venue would require us to hire
       a bartender.
     </p>
 
-    <p>Will there be a photographer?</p>
+    <p styleName="question" className="header-font">
+      Will there be a photographer?
+    </p>
 
     <p>
       Yes, her name is <a href="https://www.reedefisher.com/">Reede Fisher</a>.
@@ -26,7 +33,9 @@ const Faq = () => (
       photography. (We are happy to share the photos after the ceremony as well)
     </p>
 
-    <p>Is a hotel room needed?</p>
+    <p styleName="question" className="header-font">
+      Is a hotel room needed?
+    </p>
 
     <p>
       Since our ceremony is in the early afternoon, we don‘t think that many of
@@ -34,7 +43,9 @@ const Faq = () => (
       the area for recommendations (just let us know)
     </p>
 
-    <p>Other questions?</p>
+    <p styleName="question" className="header-font">
+      Other questions?
+    </p>
 
     <p>
       Contact one of us if you have any other questions. Somebody else probably
